@@ -14,14 +14,27 @@ export default function Shopping() {
     }
     const editItem = (id) => {
         const selectedCart = items.filter((item) => item.id === id)
-
+        console.log(selectedCart)
         setSelectedItem(selectedCart)
+
+        console.log(selectedItem)
+    }
+    const updateItem = (item) => {
+        const itemsCopy = [...items]
+        console.log(item)
+        const index = items.findIndex(data => data.id === item.id)
+        console.log(index)
+        itemsCopy[index].text = item.text
+        itemsCopy[index].amount = item.amount
+        setItems(itemsCopy)
+        setSelectedItem('')
+        window.alert('Updated Successfully')
     }
 
     const addItem = (item) => {
         let itemsCopy = [...items, item]
         setItems(itemsCopy)
-        console.log(items)
+
     }
     return (
         <div className="container">
@@ -31,6 +44,7 @@ export default function Shopping() {
                 addItem={addItem}
                 selectedItem={selectedItem}
                 items={items}
+                updateItem={updateItem}
             />
 
             <Cart items={items} deleteItem={deleteItem} editItem={editItem} />

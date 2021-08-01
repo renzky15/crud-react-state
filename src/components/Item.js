@@ -6,7 +6,7 @@ export const Item = ({ item, deleteItem, editItem }) => {
         <li>
             {item.text}
             <span>P {numberWithCommas(Math.abs(item.amount))}</span>
-            <button onClick={() => deleteItem(item.id)} className="delete-btn">
+            <button onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) deleteItem(item.id) }} className="delete-btn">
                 x
             </button>
             <button onClick={() => editItem(item.id)} className="edit-btn">
